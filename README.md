@@ -1,4 +1,4 @@
-# Todo App
+# Todo App (WORK IN PROGRESS)
 
 Tiny demonstration of a todo App in Rust with encapsulated layers and microservices to make the app
 scalable. The project is organized in sub crates and organized per cargo workspace. The API is
