@@ -1,0 +1,8 @@
+[workspace]
+resolver = "3"
+members = [
+    "nanoservices/todo/networking/actix_server",
+    "nanoservices/todo/core",
+    "nanoservices/todo/dal",
+    "shared",
+]

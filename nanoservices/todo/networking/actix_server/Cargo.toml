@@ -1,0 +1,10 @@
+[package]
+name = "todo-actix-server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+actix-web = "4.13"
+todo-core = { path = "../../core" }
+tokio = { version = "1.5", features = ["full"] }
+shared = { path = "../../../../shared", features = ["actix"] }

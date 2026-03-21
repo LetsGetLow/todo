@@ -1,0 +1,14 @@
+[package]
+name = "todo-core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = {version="4.5", features = ["derive"]}
+todo-dal = {path = "../dal/"}
+serde = { version = "1", features = ["derive"] }
+shared = { path = "../../../shared" }
+
+[features]
+json-file-storage = ["todo-dal/json-file"]
+default = ["json-file-storage"]
