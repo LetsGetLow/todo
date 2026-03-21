@@ -26,7 +26,7 @@ fn get_handle(path: Option<&str>) -> Result<File, NanoServiceError> {
 
     safe_eject!(
         result,
-        NanoServiceErrorStatus::Unkown,
+        NanoServiceErrorStatus::Unknown,
         "Error writing tasks to JSON file"
     )
 }
@@ -36,12 +36,12 @@ pub fn get_all<T: DeserializeOwned>() -> Result<HashMap<String, T>, NanoServiceE
     let mut contents = String::new();
     safe_eject!(
         file.read_to_string(&mut contents),
-        NanoServiceErrorStatus::Unkown,
+        NanoServiceErrorStatus::Unknown,
         "Error reading JSON file to get all tasks"
     )?;
     let tasks = safe_eject!(
         serde_json::from_str(&contents),
-        NanoServiceErrorStatus::Unkown,
+        NanoServiceErrorStatus::Unknown,
         "Error parsing JSON file"
     )?;
     Ok(tasks)
@@ -51,12 +51,12 @@ pub fn save_all<T: Serialize>(tasks: &HashMap<String, T>) -> Result<(), NanoServ
     let mut file = get_handle(None)?;
     let json = safe_eject!(
         serde_json::to_string_pretty(tasks),
-        NanoServiceErrorStatus::Unkown,
+        NanoServiceErrorStatus::Unknown,
         "Error serializing JSON before saving tasks"
     )?;
     safe_eject!(
         file.write_all(json.as_bytes()),
-        NanoServiceErrorStatus::Unkown,
+        NanoServiceErrorStatus::Unknown,
         "Error writing tasks to JSON file"
     )?;
     Ok(())
@@ -68,7 +68,7 @@ pub fn get_one<T: DeserializeOwned + Clone>(id: &str) -> Result<T, NanoServiceEr
         Some(t) => Ok(t.clone()),
         None => Err(NanoServiceError::new(
             format!("Task with id {id} not found"),
-            NanoServiceErrorStatus::Unkown,
+            NanoServiceErrorStatus::Unknown,
         )),
     }
 }

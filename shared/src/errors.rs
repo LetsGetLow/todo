@@ -2,7 +2,7 @@
 use actix_web::{HttpResponse, error::ResponseError, http::StatusCode};
 
 use serde::{Deserialize, Serialize};
-use std::fmt::{self, write};
+use std::fmt::{self};
 use thiserror::Error;
 
 #[derive(Error, Debug, Serialize, Deserialize, PartialEq)]
@@ -12,13 +12,13 @@ pub enum NanoServiceErrorStatus {
     #[error("You are forbidden to access requested resource")]
     Forbidden,
     #[error("Unknown Internal Error")]
-    Unkown,
+    Unknown,
     #[error("Bad Request")]
     BadRequest,
     #[error("Conflict")]
     Conflict,
     #[error("Unauthorized")]
-    Unautorized,
+    Unauthorized,
 }
 
 #[derive(Serialize, Deserialize, Debug, Error)]
@@ -45,10 +45,10 @@ impl ResponseError for NanoServiceError {
         match self.status {
             NanoServiceErrorStatus::NotFound => StatusCode::NOT_FOUND,
             NanoServiceErrorStatus::Forbidden => StatusCode::FORBIDDEN,
-            NanoServiceErrorStatus::Unkown => StatusCode::INTERNAL_SERVER_ERROR,
+            NanoServiceErrorStatus::Unknown => StatusCode::INTERNAL_SERVER_ERROR,
             NanoServiceErrorStatus::BadRequest => StatusCode::BAD_REQUEST,
             NanoServiceErrorStatus::Conflict => StatusCode::CONFLICT,
-            NanoServiceErrorStatus::Unautorized => StatusCode::UNAUTHORIZED,
+            NanoServiceErrorStatus::Unauthorized => StatusCode::UNAUTHORIZED,
         }
     }
 
