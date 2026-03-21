@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 use shared::errors::{NanoServiceError, NanoServiceErrorStatus};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+#[serde(rename_all = "UPPERCASE")]
 pub enum TaskStatus {
     Done,
     Pending,
