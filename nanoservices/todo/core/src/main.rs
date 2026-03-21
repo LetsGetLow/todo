@@ -5,8 +5,6 @@ mod structs;
 use clap::Parser;
 use shared::errors::NanoServiceError;
 
-use crate::{api::basic_actions::create::create, enums::TaskStatus};
-
 // Simple program for booking
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
@@ -18,9 +16,5 @@ struct Args {
 }
 
 fn main() -> Result<(), NanoServiceError> {
-    let args = Args::parse();
-    let status_enum = TaskStatus::from_string(&args.status)?;
-    let to_do_item = create(&args.title, status_enum)?;
-    println!("{}", to_do_item);
     Ok(())
 }
