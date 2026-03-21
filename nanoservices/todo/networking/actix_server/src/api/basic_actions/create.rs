@@ -5,6 +5,13 @@ use todo_core::{
     structs::TodoItem,
 };
 
+/// HTTP handler that creates a new todo item and returns all current items.
+///
+/// # Arguments
+/// - `body`: JSON body containing the `TodoItem` to create.
+///
+/// # Returns
+/// A JSON response with all todo items after the creation.
 pub async fn create(body: Json<TodoItem>) -> Result<HttpResponse, NanoServiceError> {
     let _ = create_core(body.into_inner()).await?;
     Ok(HttpResponse::Ok().json(get_all_core().await?))
