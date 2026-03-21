@@ -1,4 +1,4 @@
-use actix_web::web::{ServiceConfig, get, post, scope};
+use actix_web::web::{ServiceConfig, delete, get, post, scope};
 
 pub mod create;
 pub mod delete;
@@ -9,7 +9,8 @@ pub fn basic_actions_factory(app: &mut ServiceConfig) {
     app.service(
         scope("/api/v1")
             .route("todo", get().to(get::get_all))
+            .route("todo", post().to(create::create))
             .route("todo/{name}", get().to(get::get_by_name))
-            .route("todo", post().to(create::create)),
+            .route("todo/{name}", delete().to(delete::delete_by_name)),
     );
 }
