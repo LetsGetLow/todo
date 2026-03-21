@@ -2,11 +2,11 @@ use crate::enums::TaskStatus;
 use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, fmt};
 
-/// A struct representing a to-do item.
+/// A struct representing a todo item.
 ///
 /// # Fields
-/// - `title`: The title of the to-do item.
-/// - `status`: The status of the to-do item.
+/// - `title`: The title of the todo item.
+/// - `status`: The status of the todo item.
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct TodoItem {
     pub title: String,
