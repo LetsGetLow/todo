@@ -24,3 +24,4 @@ target
 *.tmp
 *.bak
 *.swp
+tasks.json
