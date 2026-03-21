@@ -5,7 +5,7 @@ pub mod delete;
 pub mod get;
 pub mod update;
 
-/// Registers all basic CRUD routes for to-do items under `/api/v1`.
+/// Registers all basic CRUD routes for todo items under `/api/v1`.
 ///
 /// # Arguments
 /// - `app`: A mutable reference to the `ServiceConfig` to register routes on.
