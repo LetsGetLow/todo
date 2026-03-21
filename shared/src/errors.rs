@@ -5,6 +5,10 @@ use serde::{Deserialize, Serialize};
 use std::fmt::{self};
 use thiserror::Error;
 
+/// The status of the error.
+///
+/// # Notes
+/// This is used to determine the HTTP status code to return.
 #[derive(Error, Debug, Serialize, Deserialize, PartialEq)]
 pub enum NanoServiceErrorStatus {
     #[error("Requested resource was not found")]
@@ -21,6 +25,11 @@ pub enum NanoServiceErrorStatus {
     Unauthorized,
 }
 
+/// The error struct that is passed between layers and servers.
+///
+/// # Fields
+/// * `message` - The error message.
+/// * `status` - The status of the error.
 #[derive(Serialize, Deserialize, Debug, Error)]
 pub struct NanoServiceError {
     pub message: String,
@@ -39,8 +48,13 @@ impl fmt::Display for NanoServiceError {
     }
 }
 
+/// Implementing the ResponseError trait for actix_web servers.
 #[cfg(feature = "actix")]
 impl ResponseError for NanoServiceError {
+    /// The status code for the actix web error response.
+    ///
+    /// # Returns
+    /// The status code for the error.
     fn status_code(&self) -> StatusCode {
         match self.status {
             NanoServiceErrorStatus::NotFound => StatusCode::NOT_FOUND,
@@ -52,12 +66,23 @@ impl ResponseError for NanoServiceError {
         }
     }
 
+    /// Constructs an HTTP response for the error.
+    ///
+    /// # Returns
+    /// An HTTP response with the appropriate status code and error message.
     fn error_response(&self) -> HttpResponse {
         let status_code = self.status_code();
         HttpResponse::build(status_code).json(self.message.clone())
     }
 }
 
+/// Maps Result error to NanoServiceError to have less boilerplate code when mapping errors to
+/// NanoServiceError in the codebase.
+///
+/// # Arguments
+/// * `$e` - result that should be mapped to NanoServiceError if it is an error
+/// * `$err_status - `NanoServiceErrorStatus` of the error
+/// * `$message_context` - optional, error context message i.e. 'Invalid request occured'
 #[macro_export]
 macro_rules! safe_eject {
     ($e:expr, $err_status:expr) => {
