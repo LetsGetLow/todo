@@ -37,6 +37,14 @@ pub struct NanoServiceError {
 }
 
 impl NanoServiceError {
+    /// Creates a new `NanoServiceError`.
+    ///
+    /// # Arguments
+    /// * `message` - The error message.
+    /// * `status` - The status of the error.
+    ///
+    /// # Returns
+    /// A new `NanoServiceError` instance.
     pub fn new(message: String, status: NanoServiceErrorStatus) -> Self {
         Self { message, status }
     }
