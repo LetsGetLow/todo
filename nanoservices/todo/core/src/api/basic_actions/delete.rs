@@ -3,7 +3,7 @@ use todo_dal::json_file::delete_one;
 
 use crate::structs::TodoItem;
 
-/// Deletes a to-do item.
+/// Deletes a todo item.
 ///
 /// # Arguments
 /// - `id` - a string slice that specifies the id of the item to delete.
