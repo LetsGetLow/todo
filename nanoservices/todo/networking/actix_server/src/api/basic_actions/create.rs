@@ -13,6 +13,6 @@ use todo_core::{
 /// # Returns
 /// A JSON response with all todo items after the creation.
 pub async fn create(body: Json<TodoItem>) -> Result<HttpResponse, NanoServiceError> {
-    let _ = create_core(body.into_inner()).await?;
+    create_core(body.into_inner()).await?;
     Ok(HttpResponse::Ok().json(get_all_core().await?))
 }
