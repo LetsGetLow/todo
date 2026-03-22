@@ -5,7 +5,7 @@ use todo_dal::json_file::{get_all as get_all_handle, save_all};
 /// Updates an existing todo item in the JSON store.
 ///
 /// # Arguments
-/// - `item`: The `TodoItem` instance containing the updated data. The `title` field is used as the
+/// * `item`: The `TodoItem` instance containing the updated data. The `title` field is used as the
 /// identifier for which item to update.
 pub async fn update(item: TodoItem) -> Result<(), NanoServiceError> {
     let mut all_items = get_all_handle::<TodoItem>()?;
