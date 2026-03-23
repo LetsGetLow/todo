@@ -15,6 +15,10 @@ between the framework and the application i.e. the `NanoServiceError` and other 
 
 The nanoservice directory hosts nano services like todo api and the authentication api.
 
+### frontend
+
+This directory is the home of the React frontend of our app.
+
 ## Nano Service Architecture
 
 A nano service is build with a 3 layer architecture core, dal and networking. The idea is to
