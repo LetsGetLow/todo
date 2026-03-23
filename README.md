@@ -9,7 +9,8 @@ classical CRUD.
 ### shared
 
 The shared sub crate contains code that is shared between all crate works like a conversion layer
-between the framework and the application i.e. the `NanoServiceError` and other glue code.
+between the framework and the application as well as unification layer between the different layers
+of the app.
 
 ### nanoservice
 
